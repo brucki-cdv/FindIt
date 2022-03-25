@@ -1,0 +1,20 @@
+
+
+.reportCardDetails{
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    margin-left: 20px;
+    justify-content: space-between;
+
+}
+
+.reportCardStatusType {
+  color: red;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.reportCardStatus {
+
+}

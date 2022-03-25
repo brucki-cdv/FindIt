@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "pulpfiction900",
+    "database": "findit",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "pulpfiction900",
+    "database": "findit",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "pulpfiction900",
+    "database": "findit",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}

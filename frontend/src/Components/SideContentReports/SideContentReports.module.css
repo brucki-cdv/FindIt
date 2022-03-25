@@ -1,0 +1,11 @@
+.controls {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.sideContentReports {
+    width: 550px;
+    margin: 0;
+}
+

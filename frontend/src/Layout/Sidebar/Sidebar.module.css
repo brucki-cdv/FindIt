@@ -1,0 +1,18 @@
+.sidebarContainer {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 84px;
+  padding: 20px 0;
+  background-color: white;
+  border-right: 1px solid rgba(0, 0, 0, 0.219);
+  z-index: 100;
+}
+
+.controls {
+  position: absolute;
+  bottom: 20%;
+  width: 100%;
+  height: 50px;
+}

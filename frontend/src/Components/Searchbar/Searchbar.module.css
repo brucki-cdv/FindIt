@@ -1,0 +1,31 @@
+.searchbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  background-color: var(--light-grey-color);
+  border-radius: 8px;
+}
+
+.searchbar input {
+  padding-left: 2px;
+  margin: 0;
+  border: 0;
+  outline: none;
+  background-color: var(--light-grey-color);
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
+.searchbar .searchbarIcon {
+  height: 100%;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(1.2);
+  cursor: pointer;
+}

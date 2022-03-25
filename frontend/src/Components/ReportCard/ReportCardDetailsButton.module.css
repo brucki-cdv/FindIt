@@ -1,0 +1,26 @@
+.reportCardDetailsButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.reportCardDetailsButton:hover {
+  background-color: var(--button-color-hover);
+}
+
+.reportCardDetailsButton:hover .reportCardDetailsButtonIcon {
+  color: var(--icon-color-hover);
+}
+
+.reportCardDetailsButtonIcon {
+  transform: scale(1.6);
+  color: var(--icon-color);
+}
