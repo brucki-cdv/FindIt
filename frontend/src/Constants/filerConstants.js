@@ -1,0 +1,5 @@
+export const OPEN_FILTERS = "OPEN_FILTERS";
+export const CLOSE_FILTERS = "CLOSE_FILTERS";
+export const SAVE_HAS_REWARD = "SAVE_HAS_REWARD";
+export const SAVE_TYPE = "SAVE_TYPE";
+export const SAVE_DISTANCE = "SAVE_DISTANCE";

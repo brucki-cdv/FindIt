@@ -53,7 +53,12 @@ exports.getReport = async (req, res, next) => {
 
 exports.getReports = async (req, res, next) => {
   try {
-    const reports = await Report.findAll();
+    const reports = await Report.findAll({
+      include: [{
+        model: ReportCategory, 
+        attributes: ['reportName']
+      }]
+    });
     res.status(200).json({
       status: "success",
       reports,

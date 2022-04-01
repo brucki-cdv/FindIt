@@ -1,0 +1,25 @@
+.textArea {
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.textArea label{
+    display:block;
+}
+
+.textArea textarea {
+    height: 200px;
+    width: 500px;
+    padding-left: 10px;
+    padding-top: 10px;
+    border: 0;
+    outline: none;
+    background-color: var(--light-grey-color);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    resize: none;
+}
+
+.textArea textarea::placeholder{
+    margin-left: 20px;
+}

@@ -7,8 +7,20 @@
   background-color: var(--light-grey-color);
   border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.filterButton.active {
+  background-color: var(--main-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.filterButton.active .filterButtonIcon {
+  color: white;
+  transition: all 0.3s ease-in-out;
 }
 
 .filterButtonIcon {
   transform: scale(1.2);
+  transition: all 0.3s ease-in-out;
 }

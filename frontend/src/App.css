@@ -1,11 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&family=Poppins:wght@300;400;600&family=Roboto:wght@300;500;700&family=Source+Sans+Pro:wght@300;400;600&display=swap");
 
+*,
+body,
+html {
+  margin: 0;
+  overflow: hidden;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box; /* Opera/IE 8+ */
+}
+
 :root {
-  box-sizing: border-box;
   --background-color: rgb(235, 235, 235);
   --main-color: #1f44f3;
   --icon-color: rgb(184, 184, 184);
   --icon-color-hover: #1f44f3;
   --button-color-hover: #1f42f315;
   --light-grey-color: #f9f9f9;
+  --opacity-dark-color: rgba(0, 0, 0, 0.15);
 }

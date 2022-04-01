@@ -1,0 +1,31 @@
+.mapCardDescription {
+  width: 100%;
+  background-color: var(--background-color);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.mapCardDescription ul {
+  padding: 0;
+  white-space: now;
+}
+
+.mapCardDescription li {
+  text-decoration: none;
+  padding: 0;
+}
+
+.mapCardDescriptionIcon {
+    display: flex;
+    flex-direction: row;
+    align-items:center
+
+}
+
+.mapCardDescriptionText {
+  font-size: 0.9rem;
+  display: inline-block;
+  margin-top: 8px;
+}

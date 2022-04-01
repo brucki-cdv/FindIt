@@ -6,26 +6,24 @@ import ReportCardContent from "./ReportCardContent";
 import ReportCardDetailsButton from "./ReportCardDetailsButton";
 
 const ReportCard = (props) => {
+  
+  
+  
   return (
-    <Wrapper style={{ padding: "10px", marginBottom: "15px" }}>
+    <div className={`${style.reportCard}`}>
       <ReportCardContent>
         <ReportCardImage />
         <div className={style.reportCardDetails}>
-          <ReportCardTitle>
-            Skradziono bardzo drogi rower!! Na Łazarzu jestem giga wkurwiony
-          </ReportCardTitle>
-          <span className={style.reportCardLocalization}>
-            ul. Hawelańska 6D/49, Poznań
-          </span>
-          <span className={style.reportCardLastSeen}>2021.01.10</span>
+          <ReportCardTitle>{props.title}</ReportCardTitle>
+          <span className={style.reportCardLocalization}>{props.location}</span>
+          <span className={style.reportCardLastSeen}>{props.date}</span>
           <span className={style.reportCardStatus}>
             Status zgłoszenia
-            <span className={style.reportCardStatusType}> SKRADZIONY</span>
+            <span className={style.reportCardStatusType}>{props.status}</span>
           </span>
         </div>
       </ReportCardContent>
-      <ReportCardDetailsButton />
-    </Wrapper>
+    </div>
   );
 };
 

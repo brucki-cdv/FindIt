@@ -1,0 +1,73 @@
+
+
+.mapCardButton {
+  width: 100%;
+  background-color: var(--main-color);
+  border-radius: 12px;
+  height: 45px;
+  overflow: visible;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.mapCardButtonText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  height: 100%;
+}
+
+.mapCardButtonExpand {
+  position: absolute;
+  top: -310%;
+  width: 100%;
+  background-color: white;
+  z-index: 1;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.mapCardButtonExpand.mapCardButtonExpandOpen {
+  opacity: 1;
+  transition: all 0.3 ease-in-out;
+}
+
+.mapCardButtonExpand li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  row-gap: 10px;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  padding: 0;
+}
+
+.mapCardButtonExpand li:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+}
+
+.mapCardButtonExpand li:hover {
+    background-color: var(--main-color);
+    color: white;
+    width: 100%;
+}
+
+.mapCardButtonExpand ul {
+  padding: 0;
+}
+
+.mapCardButtonExpandIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  transform: scale(1.2);
+}

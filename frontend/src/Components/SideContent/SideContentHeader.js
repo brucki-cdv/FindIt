@@ -1,11 +1,16 @@
 import style from "./SideContentHeader.module.css";
-
+import { useSelector } from "react-redux";
 const SideContentHeader = (props) => {
-    return (
-        <div className={style.sideContentHeader}>
-           {props.children}
-        </div>
-    )
-}
+  const { isFilterExpanded } = useSelector((state) => state.filter);
+  console.log(isFilterExpanded);
+
+  return (
+    <div
+      className={`${style.sideContentHeader} ${isFilterExpanded && style.sideContentHeaderExpand}`}
+    >
+      {props.children}
+    </div>
+  );
+};
 
 export default SideContentHeader;

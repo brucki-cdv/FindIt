@@ -1,0 +1,14 @@
+.selectHeader {
+  margin-bottom: 0.8em;
+  padding: 12.5px;
+  font-weight: 500;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  color: black;
+  background: var(--light-grey-color);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  overflow: visible;
+}
