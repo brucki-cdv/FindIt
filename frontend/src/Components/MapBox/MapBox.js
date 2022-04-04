@@ -2,6 +2,7 @@ import style from "./MapBox.module.css";
 import ReactMapGl from "react-map-gl";
 import { useState } from "react";
 import MapCard from "../MapCard";
+import GPSButtonContainer from "../GPSButton/GPSButtonContainer";
 const MapBox = (props) => {
   const [viewPort, setViewPort] = useState({
     latitude: 45.1234,
@@ -20,6 +21,7 @@ const MapBox = (props) => {
         height="100vh"
         onMove={(evt) => setViewPort(evt.viewState)}
       ></ReactMapGl>
+      <GPSButtonContainer />
       <MapCard />
     </div>
   );

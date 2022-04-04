@@ -1,18 +1,19 @@
-import style from "./AddInformation.module.css";
-import ModalBackdrop from "../Modal/ModalBackdrop";
-import ModalContainer from "../Modal/ModalContainer";
-import ModalHeader from "../Modal/ModalHeader";
-import ModalControls from "../Modal/ModalControls";
-import ModalControlItem from "../Modal/ModalControlItem";
-import ModalTitle from "../Modal/ModalTitle";
-import ModalBody from "../Modal/ModalBody";
-import InputField from "../InputField";
-import TextArea from "../TextArea";
-import MapBox from "../MapBox";
+import style from './AddInformation.module.css';
+import ModalBackdrop from '../Modal/ModalBackdrop';
+import ModalContainer from '../Modal/ModalContainer';
+import ModalHeader from '../Modal/ModalHeader';
+import ModalControls from '../Modal/ModalControls';
+import ModalControlItem from '../Modal/ModalControlItem';
+import ModalTitle from '../Modal/ModalTitle';
+import ModalBody from '../Modal/ModalBody';
+import InputField from '../InputField';
+import TextArea from '../TextArea';
+import MapBox from '../MapBox';
 
-import { IoClose } from "react-icons/io5";
-import { IoMdSave } from "react-icons/io";
-const AddInformation = (props) => {
+import { IoClose } from 'react-icons/io5';
+import { AiOutlineEdit } from 'react-icons/ai';
+
+const AddInformation = ({closeModal}) => {
   return (
     <ModalBackdrop>
       <ModalContainer>
@@ -20,10 +21,10 @@ const AddInformation = (props) => {
           <ModalTitle>Add Information</ModalTitle>
           <ModalControls>
             <ModalControlItem>
-              <IoClose size={30} />
+              <AiOutlineEdit size={30} />
             </ModalControlItem>
             <ModalControlItem>
-              <IoMdSave size={30} />
+              <IoClose size={30} onClick={closeModal}/>
             </ModalControlItem>
           </ModalControls>
         </ModalHeader>

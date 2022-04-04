@@ -1,12 +1,18 @@
-import AddInformation from "./AddInformation";
-import ReactDOM from "react-dom";
+import AddInformation from './AddInformation';
 
+import ReactDOM from 'react-dom';
+import { useDispatch } from 'react-redux';
 const AddInformationContainer = (props) => {
+  const dispatch = useDispatch();
+  const closeModal = () => {
+    dispatch({ type: 'MODAL_CLOSE' });
+  };
+
   return (
     <>
       {ReactDOM.createPortal(
-        <AddInformation />,
-        document.getElementById("modal-root")
+        <AddInformation closeModal={closeModal}/>,
+        document.getElementById('modal-root')
       )}
     </>
   );

@@ -1,0 +1,2 @@
+export const ACTIVATE_GPS = "ACTIVATE_GPS";
+export const DEACTIVATE_GPS = "DEACTIVATE_GPS";

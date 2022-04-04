@@ -2,4 +2,5 @@
   background-color: var(--background-color);
   height: 100%;
   padding: 18px;
+  overflow-y: auto;
 }
