@@ -1,9 +1,9 @@
 import style from './GPSButton.module.css';
 import { MdGpsNotFixed, MdGpsFixed } from 'react-icons/md';
-const GPSButton = ({isGPSActivated, GPSHandler}) => {
+const GPSButton = ({isGPSActivated, GPSHandler, onClick}) => {
 
     return (
-    <div onClick={GPSHandler} className={`${style.gpsButton} ${isGPSActivated && style.gpsButtonActivated}`}>
+    <div onClick={onClick} className={`${style.gpsButton} ${isGPSActivated && style.gpsButtonActivated}`}>
         {isGPSActivated ? <MdGpsFixed /> : <MdGpsNotFixed />}
     </div>
   );

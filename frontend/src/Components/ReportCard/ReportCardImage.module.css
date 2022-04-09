@@ -1,6 +1,5 @@
-.reportCardImage {
-    background-image: url('./rower.jpg');
-    background-size: cover;
+.reportCardImage img{
+   object-position: cover;
     height: 120px;
     width: 190px;
     border-radius: 8px;

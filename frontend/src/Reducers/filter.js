@@ -1,16 +1,18 @@
 import {
   OPEN_FILTERS,
   CLOSE_FILTERS,
-  SAVE_HAS_REWARD,
-  SAVE_TYPE,
-  SAVE_DISTANCE,
+  UPDATE_HASREWARD_VALUE,
+  UPDATE_TYPE_VALUE,
+  UPDATE_DISTANCE_VALUE,
+  UPDATE_SEARCHBAR_VALUE,
 } from "../Constants/filerConstants";
 
 const initialState = {
   isFilterExpanded: false,
-  hasReward: null,
-  type: null,
-  distance: null,
+  searchbarValue: null,
+  hasRewardValue: null,
+  typeValue: null,
+  distanceValue: null,
 };
 
 export default function (state = initialState, action) {
@@ -23,14 +25,19 @@ export default function (state = initialState, action) {
       };
     case CLOSE_FILTERS:
       return { ...state, isFilterExpanded: false };
-    case SAVE_HAS_REWARD:
+    case UPDATE_HASREWARD_VALUE:
       return {
-        hasReward: payload.hasReward,
+        ...state,
+        hasReward: payload,
       };
-    case SAVE_TYPE:
-      return { type: payload.type };
-    case SAVE_DISTANCE:
-      return { distance: payload.distance };
+    case UPDATE_SEARCHBAR_VALUE:
+      return { ...state, searchbarValue: payload };
+    case UPDATE_DISTANCE_VALUE:
+      return { ...state, searchbarValue: payload };
+    case UPDATE_TYPE_VALUE:
+      return { ...state, searchbarValue: payload};
+    case UPDATE_SEARCHBAR_VALUE:
+      return { ...state, searchbarValue: payload };
     default:
       return state;
   }

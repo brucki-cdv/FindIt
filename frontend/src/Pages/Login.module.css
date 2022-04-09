@@ -1,0 +1,19 @@
+
+
+
+.panelImageTextBold {
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.panelImageTextThin {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: white;
+    
+}

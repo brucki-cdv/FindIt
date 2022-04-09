@@ -8,15 +8,19 @@ import SelectListItem from "./SelectListItem";
 import SelectLabel from "./SelectLabel";
 
 import { AiOutlineDollarCircle } from "react-icons/ai";
+import {useDispatch} from 'react-redux';
 
-const SelectItem = ({ options, defaultValue, label }) => {
+const SelectItem = ({ options, defaultValue, label, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(defaultValue);
   const toggling = () => setIsOpen(!isOpen);
+ 
   const onOptionClicked = (value) => () => {
+    onChange(value)
     setSelectedOption(value);
     setIsOpen(false);
   };
+
   return (
     <SelectContainer>
       <SelectLabel>{label}</SelectLabel>

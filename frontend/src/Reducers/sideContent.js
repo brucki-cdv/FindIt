@@ -6,14 +6,25 @@ import {
   MAPCARD_OPTIONS_EXPAND,
   MAPCARD_OPTIONS_CLOSE,
   SIDEBAR_BUTTON_CLICK,
+  MAP_ACTIVE,
+  ALL_REPORTS_ACTIVE,
+  USER_REPORTS_ACTIVE,
+  NEAREST_REPORTS_ACTIVE,
+  DETAILS_ACTIVATED,
+  DETAILS_DEACTIVATED
 } from "../Constants/sideContentConstants";
 
 const initialState = {
   clickedButton: "allReports",
+  isAllReportsActive: false,
+  isUserReportsActive: false,
+  isMapActive: false,
+  isNearestReportsActive: false,
   isSideContentOpen: false,
   isReportCardClicked: false,
   isMapCardOpen: false,
   isMapCardOptionsExpanded: false,
+  isDetailsActivated: false,
   reportId: null,
 };
 
@@ -31,8 +42,9 @@ export default function (state = initialState, action) {
       };
     case REPORTCARD_CLICK:
       return {
+        isMapCardOpen: true,
         isReportCardClicked: true,
-        reportId: payload.reportId,
+        reportId: payload,
       };
     case MAPCARD_CLOSE:
       return {
@@ -55,7 +67,56 @@ export default function (state = initialState, action) {
         ...state,
         clickedButton: payload,
       };
+    case MAP_ACTIVE:
+      return {
+        ...state,
+        isAllReportsActive: false,
+        isUserReportsActive: false,
+        isMapActive: true,
+        isNearestReportsActive: false,
+        isDetailsActivated: false,
+      };
+    case ALL_REPORTS_ACTIVE:
+      return {
+        ...state,
+        isAllReportsActive: true,
+        isUserReportsActive: false,
+        isMapActive: false,
+        isNearestReportsActive: false,
+        isDetailsActivated: false,
+      };
+    case USER_REPORTS_ACTIVE:
+      return {
+        ...state,
+        isAllReportsActive: false,
+        isUserReportsActive: true,
+        isMapActive: false,
+        isNearestReportsActive: false,
+        isDetailsActivated: false,
+      };
+    case NEAREST_REPORTS_ACTIVE:
+      return {
+        ...state,
+        isAllReportsActive: false,
+        isUserReportsActive: false,
+        isMapActive: false,
+        isNearestReportsActive: true,
+        isDetailsActivated: false,
+      };
 
+    case DETAILS_ACTIVATED:
+      return {
+        ...state,
+        isDetailsActivated: true,
+        reportId: payload
+      }
+
+    case DETAILS_DEACTIVATED:
+      return {
+        ...state,
+        isDetailsActivated: false,
+        reportId: null
+      }
     default:
       return state;
   }

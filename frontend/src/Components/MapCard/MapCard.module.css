@@ -1,19 +1,40 @@
 .mapCard {
-    position: absolute;
-    bottom: 0;
-    right: -400px;
-    margin: 32px;
-    height: 540px;
-    width: 310px;
-    background-color: white;
-    box-shadow:rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+  position: absolute;
+  bottom: 0;
+  right: -400px;
+  margin: 32px;
+  height: 540px;
+  width: 310px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
     rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-    border-radius: 12px;
-    padding: 20px;
-    transition: all 0.3s ease-in-out;
+  border-radius: 12px;
+  padding: 20px;
+  animation-name: slideToRight;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
 }
 
 .mapCardOpen {
+  animation-name: slideToLeft;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+}
+
+@keyframes slideToRight {
+  0% {
+    right: -400px;
+  }
+  100% {
     right: 0;
-    transition: all 0.3s ease-in-out;
+  }
+}
+
+@keyframes slideToLeft {
+  0% {
+    right: 0;
+  }
+  100% {
+    right: -400px;
+  }
 }

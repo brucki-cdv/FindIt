@@ -8,25 +8,37 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      UserReportInformation.hasOne(models.UserReportLocation, {
-        foreignKey: "userReportInformationId",
-      });
-
-      UserReportInformation.belongsTo(models.Report, {
-        foreignKey: "reportId",
-      });
-
-      UserReportInformation.belongsTo(models.User, {
-        foreignKey: 'userId'
-      });
+      UserReportInformation.belongsTo(models.Report, {foreignKey: 'reportId'})
+      UserReportInformation.belongsTo(models.User, {foreignKey: 'userId'})
     }
   }
   UserReportInformation.init(
     {
-      reportId: DataTypes.INTEGER,
-      title: DataTypes.STRING,
-      description: DataTypes.STRING,
-      userId: DataTypes.INTEGER,
+      
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+         
+          notEmpty: true,
+        },
+      },
+      description: {
+        type: DataTypes.STRING(2048),
+        allowNull: false,
+        validate: {
+        
+          notEmpty: true,
+        },
+      },
+      date: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        validate: {
+        
+          notEmpty: true,
+        },
+      },
     },
     {
       sequelize,

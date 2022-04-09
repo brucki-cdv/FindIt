@@ -1,7 +1,7 @@
 import { MODAL_OPEN, MODAL_CLOSE } from '../Constants/modalConstants';
 
 const initialState = {
-  isModalOpen: true,
+  isModalOpen: false,
   modalName: null,
 };
 

@@ -1,9 +1,9 @@
-import { ACTIVATE_GPS, DEACTIVATE_GPS } from '../Constants/gpsConstants';
+import { ACTIVATE_GPS, DEACTIVATE_GPS } from "../Constants/gpsConstants";
 
 const initialState = {
-  isGPSActivated: true,
-  latitude: null,
-  longitude: null,
+  isGPSActivated: false,
+  latitude: 52.44263685895496,
+  longitude: 16.94897278473774,
 };
 
 export default function (state = initialState, action) {
@@ -11,9 +11,13 @@ export default function (state = initialState, action) {
 
   switch (type) {
     case ACTIVATE_GPS:
-      return { isGPSActivated: true };
+      return {
+        isGPSActivated: true,
+        latitude: payload.latitude,
+        longitude: payload.longitude,
+      };
     case DEACTIVATE_GPS:
-      return { isGPSActivated: false };
+      return { latitude: null, longitude: null, isGPSActivated: false };
     default:
       return state;
   }

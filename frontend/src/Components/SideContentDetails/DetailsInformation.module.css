@@ -1,0 +1,20 @@
+.detailsInformation {
+    align-items: center;
+    height: auto;  
+    display: flex;
+    margin-top: 12px;
+}
+
+.detailsInformationText {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+}
+
+.detailsInformationLogo {
+  color: var(--main-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:30px;
+}

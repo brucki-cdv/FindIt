@@ -1,0 +1,15 @@
+.errorFormMessage {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 500px;
+    color: red;
+    align-items: center;
+}
+
+.errorFormMessageText {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: .8rem;
+    margin-left: 10px;
+}

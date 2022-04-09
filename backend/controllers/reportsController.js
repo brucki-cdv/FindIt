@@ -1,5 +1,10 @@
 const AppError = require("../utlis/appError");
-const { Report, ReportLocation, ReportCategory } = require("../models");
+const {
+  Report,
+  ReportLocation,
+  ReportCategory,
+  ReportImage,
+} = require("../models");
 
 exports.createReport = async (req, res, next) => {
   try {
@@ -35,7 +40,18 @@ exports.createReport = async (req, res, next) => {
 
 exports.getReport = async (req, res, next) => {
   try {
-    const report = await Report.findOne({ where: { id: req.params.id } });
+    const report = await Report.findOne({
+      where: { id: req.params.id },
+      include: [
+        {
+          model: ReportImage,
+          attributes: ["url"],
+        },{
+          model: ReportLocation,
+          attributes: ['longitude', 'latitude']
+        }
+      ],
+    });
     if (!report) {
       return next(
         new AppError("Something went wrong while finding report", 400)
@@ -54,10 +70,13 @@ exports.getReport = async (req, res, next) => {
 exports.getReports = async (req, res, next) => {
   try {
     const reports = await Report.findAll({
-      include: [{
-        model: ReportCategory, 
-        attributes: ['reportName']
-      }]
+      include: [
+        {
+          model: ReportCategory,
+          attributes: ["reportCategory"],
+        },
+        { model: ReportImage, attributes: ["url"] },
+      ],
     });
     res.status(200).json({
       status: "success",
@@ -78,7 +97,7 @@ exports.getReportsLocation = async (req, res, next) => {
         },
         {
           model: ReportCategory,
-          attributes: ["reportName"],
+          attributes: ["reportCategory"],
         },
       ],
     });

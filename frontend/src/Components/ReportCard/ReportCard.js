@@ -6,13 +6,12 @@ import ReportCardContent from "./ReportCardContent";
 import ReportCardDetailsButton from "./ReportCardDetailsButton";
 
 const ReportCard = (props) => {
-  
-  
+
   
   return (
-    <div className={`${style.reportCard}`}>
+    <div className={`${style.reportCard}`} onClick={props.onClick}>
       <ReportCardContent>
-        <ReportCardImage />
+        <ReportCardImage src={props.src}/>
         <div className={style.reportCardDetails}>
           <ReportCardTitle>{props.title}</ReportCardTitle>
           <span className={style.reportCardLocalization}>{props.location}</span>
