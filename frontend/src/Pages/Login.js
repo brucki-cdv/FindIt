@@ -29,26 +29,21 @@ const Login = (props) => {
       <PanelBody>
         <Title>Log In</Title>
         <LogInWith logo={<FaGoogle />}>Log In with Google!</LogInWith>
-        <Form onSubmit={props.onSubmit}>
+        <Form onSubmit={props.handleSubmit}>
           <InputField
             label="Enter email:"
             placeholder="Email"
             onChange={props.onEmailChange}
-            value={props.email}
           />
-          {!props.isEmailValid && (
-            <ErrorFormMessage>{props.errorMessage.email}</ErrorFormMessage>
-          )}
-
+          
           <InputField
             type="password"
             label="Enter password:"
             placeholder="Password"
             onChange={props.onPasswordChange}
-            value={props.password}
           />
-          {!props.isPasswordValid && (
-            <ErrorFormMessage>{props.errorMessage.password}</ErrorFormMessage>
+          {!props.errMsg && (
+            <ErrorFormMessage>{props.errMsg}</ErrorFormMessage>
           )}
           <SubmitButton name="Log In" />
         </Form>

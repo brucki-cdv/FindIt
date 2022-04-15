@@ -1,107 +1,75 @@
 import Login from "./Login";
+import axios from "../Services/axios";
 
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRef, useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const LoginContainer = (props) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isEmailValid, setIsEmailValid] = useState(false);
-  const [isPasswordValid, setIsPasswordValid] = useState(false);
-  const [errorMessage, setErrorMessage] = useState({
-    email: null,
-    password: null,
-  });
+  const { token } = useSelector((state) => state.auth);
+  const [user, setUser] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [errMsg, setErrMsg] = useState("");
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    formValidation();
-    navigateUser();
-    setEmail("");
-    setPassword("");
-  };
+  console.log(token);
+  useEffect(() => {
+    // userRef.current.focus();
+  }, []);
 
-  const formValidation = () => {
-
-   
-
-    if (
-      !email
-        .toLowerCase()
-        .match(
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        )
-    ) {
-      setIsEmailValid(false);
-      setErrorMessage((prevState) => {
-        return { ...prevState, email: "Wrong email model" };
-      });
-    } else {
-      setIsEmailValid(true);
-      setErrorMessage((prevState) => {
-        return { ...prevState, email: null };
-      });
-    }
-
-    if (email === "" || email === null) {
-      setIsEmailValid(false);
-      setErrorMessage((prevState) => {
-        return { ...prevState, email: "Email cannot be empty" };
-      });
-    }
-
-    if (password.length < 5) {
-      setIsPasswordValid(false);
-      setErrorMessage((prevState) => {
-        return {
-          ...prevState,
-          password: "Password has to be min 5 characters long",
-        };
-      });
-    } else {
-      setIsPasswordValid(true);
-      setErrorMessage((prevState) => {
-        return { ...prevState, email: null };
-      });
-    }
-
-    if (password === "" || password === null) {
-      setIsPasswordValid(false);
-      setErrorMessage((prevState) => {
-        return { ...prevState, password: "Password cannot be empty" };
-      });
-    }
-
-    
-  };
-
-  const navigateUser = () => {
-    console.log(isEmailValid);
-    console.log(isPasswordValid);
-    if (isEmailValid && isPasswordValid) {
-      navigate("/home");
-    }
-  };
+  useEffect(() => {
+    setErrMsg("");
+  }, [user, pwd]);
 
   const onEmailChange = (e) => {
-    console.log(e.target.value);
-    setEmail(e.target.value);
-  };
-  const onPasswordChange = (e) => {
-    console.log(e.target.value);
-    setPassword(e.target.value);
+    setUser(e.target.value);
   };
 
+  const onPasswordChange = (e) => {
+    setPwd(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/v1/user/login",
+        { email: user, password: pwd },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(JSON.stringify(response?.data));
+      const token = response?.data?.token;
+      const userId = response?.data?.userId;
+      dispatch({
+        type: "AUTHENTICATE_USER",
+        payload: { email: user, token: token, userId: userId },
+      });
+      setUser("");
+      setPwd("");
+      navigate("/home", { replace: true });
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg("No Server Response");
+      } else if (err.response?.status === 400) {
+        setErrMsg("Missing Username or Password");
+      } else if (err.response?.status === 401) {
+        setErrMsg("Unauthorized");
+      } else {
+        setErrMsg("Login Failed");
+      }
+      //errRef.current.focus();
+    }
+  };
   const loginContext = {
-    email,
-    password,
-    onSubmit,
     onEmailChange,
     onPasswordChange,
-    isEmailValid,
-    isPasswordValid,
-    errorMessage,
+    handleSubmit,
+    errMsg,
   };
 
   return <Login {...loginContext} />;

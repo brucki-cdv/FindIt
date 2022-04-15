@@ -10,4 +10,12 @@ const getReport = async (id, setting) => {
   return axios.get(SERVER_URL + "/report/" + id, setting);
 };
 
-export default { getReports, getReport };
+const getUserReports = async (id) => {
+  return axios.get(SERVER_URL + "/report/user/" + id);
+}
+
+const postUserInformation = async (information) => {
+  return axios.post(SERVER_URL + "/userInformation", information)
+}
+
+export default { getReports, getReport, getUserReports, postUserInformation };

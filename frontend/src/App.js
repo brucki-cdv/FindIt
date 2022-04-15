@@ -1,21 +1,23 @@
 import Home from "./Pages/Home";
 import Login from "./Pages/LoginContainer";
 import Register from "./Pages/Register";
+import RequireAuth from "./Components/RequireAuth";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import 'mapbox-gl/dist/mapbox-gl.css';
+import "mapbox-gl/dist/mapbox-gl.css";
 
-import "./App.css"
+import "./App.css";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/home" element={<Home/>}/>
-        <Route path="/login" element={<Login/>}/>
+        <Route element={<RequireAuth />}>
+          <Route path="/home" element={<Home />} />
+        </Route>
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
-
   );
 }
 

@@ -6,13 +6,12 @@ import { useEffect, useState } from "react";
 const SideContentReportDetailsContainer = () => {
   const { reportId } = useSelector((state) => state.sideContent);
   const [reportDetail, setReportDetail] = useState({});
-  const [mounted, setMounted] = useState(true);
-  const controller = new AbortController();
 
   useEffect(() => {
+    let isApiSubscribed = true;
     async function fetchData() {
       await dataService.getReport(reportId).then((val) => {
-        if (mounted) {
+        if (isApiSubscribed) {
           setReportDetail(val.data.report);
         }
       });
@@ -21,9 +20,11 @@ const SideContentReportDetailsContainer = () => {
     fetchData();
 
     return () => {
-      setMounted(false);
+      return () => {
+        isApiSubscribed = false;
+      };
     };
-  }, []);
+  }, [reportId]);
 
   const init = {
     reportDetail,

@@ -4,6 +4,6 @@ const router = express.Router();
 
 
 router.get('/:id', userReportInformationController.getInformations)
-
+router.post('/', userReportInformationController.createInformation);
 
 module.exports = router

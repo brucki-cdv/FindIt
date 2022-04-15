@@ -13,7 +13,7 @@ import GPSButtonContainer from "../GPSButton/GPSButtonContainer";
 import { IoClose } from "react-icons/io5";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useState } from "react";
-import ReactMapGl from "react-map-gl";
+import ReactMapGl, { Marker } from "react-map-gl";
 
 const AddInformation = ({ closeModal, init }) => {
   const [viewPort, setViewPort] = useState({
@@ -31,8 +31,8 @@ const AddInformation = ({ closeModal, init }) => {
           <ModalTitle>Add Information</ModalTitle>
           <ModalControls>
             <ModalControlItem
-              disabled={false}
-              onClick={init.handleUpload}
+              disabled={!init.isValid}
+              onClick={init.uploadInformation}
             >
               <AiOutlineEdit size={30} />
             </ModalControlItem>
@@ -44,12 +44,11 @@ const AddInformation = ({ closeModal, init }) => {
         <ModalBody>
           <div className={style.inputs}>
             <InputField
-              type="file"
+              type="text"
               label="Enter Title"
               placeholder="Title"
               name="title"
-              multiple
-              onChange={init.onFileChange}
+              onChange={init.onTitleChange}
             />
             <InputField
               type="date"
@@ -70,8 +69,21 @@ const AddInformation = ({ closeModal, init }) => {
               {...viewPort}
               mapStyle="mapbox://styles/bartekjestem/cl1azlx5y001014p4teuddq9f"
               height="100vh"
+              cursor="pointer"
               onMove={(evt) => setViewPort(evt.viewState)}
-            ></ReactMapGl>
+              onDblClick={init.handleMapClick}
+            >
+              {init.point.isCreated && (
+                <Marker
+                  longitude={init.point.longitude}
+                  latitude={init.point.latitude}
+                >
+                  <div
+                    className={`${style.blob} ${style.blue}`}
+                  ></div>
+                </Marker>
+              )}
+            </ReactMapGl>
             <GPSButtonContainer />
           </div>
         </ModalBody>

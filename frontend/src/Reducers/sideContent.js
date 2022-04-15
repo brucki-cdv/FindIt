@@ -8,10 +8,12 @@ import {
   SIDEBAR_BUTTON_CLICK,
   MAP_ACTIVE,
   ALL_REPORTS_ACTIVE,
+  USER_PROFILE_ACTIVE,
   USER_REPORTS_ACTIVE,
   NEAREST_REPORTS_ACTIVE,
   DETAILS_ACTIVATED,
-  DETAILS_DEACTIVATED
+  DETAILS_DEACTIVATED,
+  MARKER_CLICK
 } from "../Constants/sideContentConstants";
 
 const initialState = {
@@ -19,10 +21,10 @@ const initialState = {
   isAllReportsActive: false,
   isUserReportsActive: false,
   isMapActive: false,
+  isUserProfileActive: false,
   isNearestReportsActive: false,
   isSideContentOpen: false,
   isReportCardClicked: false,
-  isMapCardOpen: false,
   isMapCardOptionsExpanded: false,
   isDetailsActivated: false,
   reportId: null,
@@ -40,10 +42,11 @@ export default function (state = initialState, action) {
       return {
         isSideContentOpen: false,
       };
-    case REPORTCARD_CLICK:
+    case MARKER_CLICK:
       return {
-        isMapCardOpen: true,
-        isReportCardClicked: true,
+        ...state,
+        isDetailsActivated: true,
+        isAllReportsActive: true,
         reportId: payload,
       };
     case MAPCARD_CLOSE:
@@ -72,6 +75,7 @@ export default function (state = initialState, action) {
         ...state,
         isAllReportsActive: false,
         isUserReportsActive: false,
+        isUserProfileActive: false,
         isMapActive: true,
         isNearestReportsActive: false,
         isDetailsActivated: false,
@@ -81,6 +85,7 @@ export default function (state = initialState, action) {
         ...state,
         isAllReportsActive: true,
         isUserReportsActive: false,
+        isUserProfileActive: false,
         isMapActive: false,
         isNearestReportsActive: false,
         isDetailsActivated: false,
@@ -89,6 +94,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isAllReportsActive: false,
+        isUserProfileActive: false,
         isUserReportsActive: true,
         isMapActive: false,
         isNearestReportsActive: false,
@@ -98,11 +104,22 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isAllReportsActive: false,
+        isUserProfileActive: false,
         isUserReportsActive: false,
         isMapActive: false,
         isNearestReportsActive: true,
         isDetailsActivated: false,
       };
+      case USER_PROFILE_ACTIVE:
+        return {
+          ...state,
+          isAllReportsActive: false,
+          isUserProfileActive: true,
+          isUserReportsActive: false,
+          isMapActive: false,
+          isNearestReportsActive: false,
+          isDetailsActivated: false,
+        }
 
     case DETAILS_ACTIVATED:
       return {

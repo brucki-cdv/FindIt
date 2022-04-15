@@ -5,7 +5,6 @@ const { User } = require("../models");
 
 const sendToken = (user, req, res) => {
   let token = signToken(user.id);
-
   res.cookie("jwt", token, {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
@@ -16,9 +15,8 @@ const sendToken = (user, req, res) => {
   res.status(200).json({
     status: "success",
     message: "Token sent successfully",
-    jwt: {
-      token,
-    },
+    token,
+    userId: user.id
   });
 };
 
@@ -62,6 +60,30 @@ exports.register = async (req, res, next) => {
     console.log(error.message);
   }
 };
+
+
+exports.refreshToken = (req, res) => {
+  const cookies = req.cookies;
+  if (!cookies?.jwt) return res.sendStatus(401);
+  const refreshToken = cookies.jwt;
+
+  const foundUser = usersDB.users.find(person => person.refreshToken === refreshToken);
+  if (!foundUser) return res.sendStatus(403); //Forbidden 
+  // evaluate jwt 
+  jwt.verify(
+      refreshToken,
+      process.env.REFRESH_TOKEN_SECRET,
+      (err, decoded) => {
+          if (err || foundUser.username !== decoded.username) return res.sendStatus(403);
+          const accessToken = jwt.sign(
+              { "username": decoded.username },
+              process.env.ACCESS_TOKEN_SECRET,
+              { expiresIn: '30s' }
+          );
+          res.json({ accessToken })
+      }
+  );
+}
 
 exports.login = async (req, res, next) => {
   try {

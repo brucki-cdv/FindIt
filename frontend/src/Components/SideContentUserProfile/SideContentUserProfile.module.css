@@ -1,0 +1,87 @@
+.sideContentReports {
+  position: relative;
+  float: left;
+  width: 520px;
+  left: -550px;
+  height: 100%;
+  margin: 0;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  z-index: 100;
+  animation: slideToLeft 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.sideContentReports.active {
+  animation: slideToRight 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.profileWrapper {
+  display: flex;
+  height: 100%;
+  background-color: white;
+  border-radius: 12px;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    flex: 0 1 auto;
+}
+
+.profileImage img {
+  margin-top: 10px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.profileName {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+.profileImage:hover {
+  filter: blur(1px);
+  -webkit-filter: blur(1px);
+  transition: all 0.2s ease-in-out;
+}
+
+.informations li {
+  margin-top: 10px;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2rem;
+}
+
+.informations ul {
+  padding: 0;
+}
+
+.informations span {
+  margin-left: 20px;
+}
+
+@keyframes slideToRight {
+  0% {
+    left: -550px;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes slideToLeft {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -550px;
+  }
+}

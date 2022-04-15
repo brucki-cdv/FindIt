@@ -4,6 +4,7 @@ const {
   ReportLocation,
   ReportCategory,
   ReportImage,
+  User,
 } = require("../models");
 
 exports.createReport = async (req, res, next) => {
@@ -46,10 +47,11 @@ exports.getReport = async (req, res, next) => {
         {
           model: ReportImage,
           attributes: ["url"],
-        },{
+        },
+        {
           model: ReportLocation,
-          attributes: ['longitude', 'latitude']
-        }
+          attributes: ["longitude", "latitude"],
+        },
       ],
     });
     if (!report) {
@@ -117,5 +119,41 @@ exports.getReportsLocation = async (req, res, next) => {
   }
 };
 
+exports.getUserReport = async (req, res, next) => {
+  try {
+    const userReport = await Report.findAll({
+      include: [
+        {
+          model: User,
+          where: { email: req.params.id },
+        },
+        {
+          model: ReportCategory,
+          attributes: ["reportCategory"],
+        },
+        {
+          model: ReportImage,
+          attributes: ["url"],
+        },
+      ],
+    });
+
+    if (!userReport) {
+      return next(
+        new AppError("Something went wrong while getting user reports", 400)
+      );
+    }
+
+    res.status(200).json({
+      status: "success",
+      userReport,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 exports.deleteReport = async (req, res, next) => {};
-exports.updateReport = async (req, res, next) => {};
+exports.updateReport = async (req, res, next) => {
+  
+};

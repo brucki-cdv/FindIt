@@ -8,18 +8,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      UserReportInformation.belongsTo(models.Report, {foreignKey: 'reportId'})
-      UserReportInformation.belongsTo(models.User, {foreignKey: 'userId'})
+      UserReportInformation.belongsTo(models.Report, {
+        foreignKey: "reportId",
+      });
+      UserReportInformation.belongsTo(models.User, { foreignKey: "userId" });
+      UserReportInformation.hasOne(models.UserReportLocation, {
+        foreignKey: "userReportInformationId",
+      });
     }
   }
   UserReportInformation.init(
     {
-      
       title: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-         
           notEmpty: true,
         },
       },
@@ -27,7 +30,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(2048),
         allowNull: false,
         validate: {
-        
           notEmpty: true,
         },
       },
@@ -35,7 +37,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
         allowNull: false,
         validate: {
-        
           notEmpty: true,
         },
       },

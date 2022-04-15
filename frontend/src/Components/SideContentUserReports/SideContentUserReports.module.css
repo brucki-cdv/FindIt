@@ -1,0 +1,43 @@
+.controls {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+  }
+  
+  .sideContentReports {
+    position: absolute;
+    width: 520px;
+    left: -550px;
+    height: 100vh;
+    margin: 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+      rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    z-index: 100;
+    animation: slideToLeft 0.5s;
+    animation-fill-mode: forwards;
+    overflow: auto;
+  }
+  
+  .sideContentReports.active {
+    animation: slideToRight 0.5s;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes slideToRight {
+    0% {
+      left: -550px;
+    }
+    100% {
+      left: 0;
+    }
+  }
+  
+  @keyframes slideToLeft {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -550px;
+    }
+  }
+  

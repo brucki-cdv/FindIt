@@ -5,7 +5,6 @@ import DetailsControl from "../SideContentDetails/DetailsControl";
 import DetailsInformations from "../SideContentDetails/DetailsInformations";
 import DetailsInformation from "../SideContentDetails/DetailsInformation";
 import Separator from "../Separator";
-import image from "../../Images/rower.jpg";
 
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
@@ -21,22 +20,20 @@ import { useDispatch } from "react-redux";
 
 const SideContentReportDetails = ({ init }) => {
   const dispatch = useDispatch();
-
-  const displayCords = () => {
-    if (init.reportDetail.ReportLocation.latitude == undefined) {
-      return <span>nothing here</span>;
-    } else {
-      return (
-        <>
-          <span>{init.reportDetail.ReportLocation.latitude}</span>
-        </>
-      );
-    }
-  };
+  console.log(init.reportDetail);
   return (
     <>
       <DetailsImage>
-        <img src={image} alt="bike" />
+        {init.reportDetail.ReportImages ? (
+          <img
+            src={init.reportDetail.ReportImages.map((image) => {
+              return image.url;
+            })}
+            alt="bike"
+          />
+        ) : (
+          <img src="" alt="nothing" />
+        )}
       </DetailsImage>
       <DetailsTitle>{init.reportDetail.title}</DetailsTitle>
       <Separator />
@@ -44,7 +41,7 @@ const SideContentReportDetails = ({ init }) => {
         <DetailsControl
           logo={<IoMdAdd />}
           onClick={() => {
-            dispatch({ type: "MODAL_OPEN" });
+            dispatch({ type: "ADD_INFORMATION_OPEN" });
           }}
         >
           Dodaj informacje

@@ -19,7 +19,9 @@ const MainMapContainer = (props) => {
   });
 
   const onMarkerClick = (id) => {
-    dispatch({ type: "REPORTCARD_CLICK", payload: id });
+    console.log(id);
+    dispatch({type: "ALL_REPORTS_ACTIVE"});
+    dispatch({ type: "MARKER_CLICK", payload: id });
   };
 
   useEffect(() => {

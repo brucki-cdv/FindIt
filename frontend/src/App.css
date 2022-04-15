@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&family=Poppins:wght@300;400;600&family=Roboto:wght@300;500;700&family=Source+Sans+Pro:wght@300;400;600&display=swap");
+@import "react-slideshow-image/dist/styles.css";
 
 *,
 body,
 html {
   margin: 0;
-  overflow: hidden;
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box; /* Firefox, other Gecko */
   box-sizing: border-box; /* Opera/IE 8+ */

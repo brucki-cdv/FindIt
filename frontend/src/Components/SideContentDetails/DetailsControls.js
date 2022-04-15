@@ -2,7 +2,7 @@ import style from "./DetailsControls.module.css";
 
 const DetailsControls = (props) => {
     return (
-        <ul className={style.detailsControls}>{props.children}</ul>
+        <ul className={style.detailsControls} style={props.style}>{props.children}</ul>
     )
 }
 

@@ -1,22 +1,24 @@
-'use strict';
+"use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('UserReportLocations', {
+    await queryInterface.createTable("UserReportLocations", {
       userReportInformationId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        primaryKey: true,
       },
       longitude: {
         type: Sequelize.FLOAT,
-        allowNull: false
+        allowNull: false,
       },
       latitude: {
         type: Sequelize.FLOAT,
-        allowNull: false
-      }
+        allowNull: false,
+      },
+     
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('UserReportLocations');
-  }
+    await queryInterface.dropTable("UserReportLocations");
+  },
 };
