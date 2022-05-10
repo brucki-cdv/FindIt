@@ -1,11 +1,12 @@
 import style from "./MainMap.module.css";
 import MainMapWrapper from "./MainMapWrapper";
-import GPSButtonContainer from "../GPSButton/GPSButtonContainer";
+import GPSButtonContainer from "../Buttons/GPSButton/GPSButtonContainer";
+import CreateReportButton from "../Buttons/CreateReportButton";
 import MapCard from "../MapCard";
 import { useDelayUnmount } from "../../Hooks/useDelayUnmount";
 
 import Map, { Marker } from "react-map-gl";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const MainMap = ({ init, locations }) => {
   const { isGPSActivated, longitude, latitude } = useSelector(
@@ -13,6 +14,7 @@ const MainMap = ({ init, locations }) => {
   );
   const { isMapCardOpen } = useSelector((state) => state.sideContent);
   const showMapCard = useDelayUnmount(isMapCardOpen, 450);
+  const dispatch = useDispatch();
 
   return (
     <MainMapWrapper>
@@ -44,8 +46,11 @@ const MainMap = ({ init, locations }) => {
           </Marker>
         )}
       </Map>
+      <div className={style.mainMapButtons}>
+        <CreateReportButton onClick={() => dispatch({type: "CREATE_REPORT_OPEN"})}/>
+        <GPSButtonContainer />
+      </div>
 
-      <GPSButtonContainer />
       {showMapCard && <MapCard />}
     </MainMapWrapper>
   );

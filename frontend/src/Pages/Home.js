@@ -7,7 +7,9 @@ import MainMap from "../Components/MainMap";
 import AddInformation from "../Components/AddInformation";
 import ShowInformation from "../Components/ShowInformation";
 import EditInformation from "../Components/EditInformation";
-
+import CreateReport from "../Components/CreateReport";
+import ShowUserReport from "../Components/ShowUserReport";
+import EditUserProfile from "../Components/EditUserProfile"
 
 import SlideShow from "../Components/SlideShow";
 import { useDelayUnmount } from "../Hooks/useDelayUnmount";
@@ -15,13 +17,18 @@ import { useDelayUnmount } from "../Hooks/useDelayUnmount";
 import { useSelector } from "react-redux";
 
 const Home = (props) => {
-  const { isEditInformationOpen, isShowInformationOpen, isAddInformationOpen } =
-    useSelector((state) => state.modal);
+  const {
+    isEditInformationOpen,
+    isShowInformationOpen,
+    isAddInformationOpen,
+    isEditUserProfileOpen,
+    isCreateReportOpen,
+    isSlideshowOpen
+  } = useSelector((state) => state.modal);
   const { userId } = useSelector((state) => state.auth);
   console.log(userId);
-  const { isAllReportsActive, isUserReportsActive, isUserProfileActive } = useSelector(
-    (state) => state.sideContent
-  );
+  const { isAllReportsActive, isUserReportsActive, isUserProfileActive } =
+    useSelector((state) => state.sideContent);
 
   const showAllReports = useDelayUnmount(isAllReportsActive, 450);
   const showUserReports = useDelayUnmount(isUserReportsActive, 450);
@@ -38,7 +45,10 @@ const Home = (props) => {
         {isShowInformationOpen && <ShowInformation />}
         {isEditInformationOpen && <EditInformation />}
         {isAddInformationOpen && <AddInformation />}
-        {/* <SlideShow /> */}
+        {isCreateReportOpen && <CreateReport />}
+        {isEditUserProfileOpen && <EditUserProfile />}
+        {isSlideshowOpen && <SlideShow /> }
+        {/* <ShowUserReport /> */}
       </div>
     </div>
   );

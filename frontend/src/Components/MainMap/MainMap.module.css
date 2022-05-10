@@ -14,14 +14,23 @@
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.1)
-
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .blob.red {
   background: rgba(255, 82, 82, 1);
   box-shadow: 0 0 0 0 rgba(255, 82, 82, 1);
   animation: pulse-red 2s infinite;
+}
+
+.mainMapButtons {
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 @keyframes pulse-red {

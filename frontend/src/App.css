@@ -13,6 +13,7 @@ html {
 :root {
   --background-color: rgb(235, 235, 235);
   --main-color: #1f44f3;
+  --main-color-hover: #152fad;
   --icon-color: rgb(184, 184, 184);
   --icon-color-hover: #1f44f3;
   --button-color-hover: #1f42f315;

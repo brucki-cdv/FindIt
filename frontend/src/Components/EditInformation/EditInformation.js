@@ -8,7 +8,7 @@ import ModalTitle from "../Modal/ModalTitle";
 import ModalBody from "../Modal/ModalBody";
 import InputField from "../InputField";
 import TextArea from "../TextArea";
-import GPSButtonContainer from "../GPSButton/GPSButtonContainer";
+import GPSButtonContainer from "../Buttons/GPSButton/GPSButtonContainer";
 
 import { IoClose } from "react-icons/io5";
 import { AiOutlineEdit } from "react-icons/ai";
@@ -16,13 +16,7 @@ import { useState } from "react";
 import ReactMapGl, { Marker } from "react-map-gl";
 
 const EditInformation = ({ closeModal, init }) => {
-  const [viewPort, setViewPort] = useState({
-    latitude: init.point?.latitude,
-    longitude: init.point?.longitude,
-    width: "100%",
-    height: "100%",
-    zoom: 10,
-  });
+  
 
   return (
     <ModalBackdrop>
@@ -32,7 +26,7 @@ const EditInformation = ({ closeModal, init }) => {
           <ModalControls>
             <ModalControlItem
               disabled={!init.isValid}
-              onClick={init.handleUpload}
+              onClick={init.handleReportUpdate}
             >
               <AiOutlineEdit size={30} />
             </ModalControlItem>
@@ -77,10 +71,10 @@ const EditInformation = ({ closeModal, init }) => {
           <div className={style.mapBox}>
             <ReactMapGl
               mapboxAccessToken="pk.eyJ1IjoiYmFydGVramVzdGVtIiwiYSI6ImNsMWF5dGI1cjAzYjkzZGw1dDhya2tpMTQifQ.wsEI0FtuW4stiEeVQx8lpQ"
-              {...viewPort}
+              {...init.viewPort}
               mapStyle="mapbox://styles/bartekjestem/cl1azlx5y001014p4teuddq9f"
               height="100vh"
-              onMove={(evt) => setViewPort(evt.viewState)}
+              onMove={(evt) => init.setViewPort(evt.viewState)}
               onDblClick={init.handleMapClick}
               cursor="pointer"
             >
@@ -93,7 +87,10 @@ const EditInformation = ({ closeModal, init }) => {
                 </Marker>
               )}
             </ReactMapGl>
-            <GPSButtonContainer />
+            <div className={style.mapGPSButton}>
+              <GPSButtonContainer />
+            </div>
+            
           </div>
         </ModalBody>
       </ModalContainer>

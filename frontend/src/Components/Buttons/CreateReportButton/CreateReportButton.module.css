@@ -1,0 +1,22 @@
+.createReportButton button {
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  gap: 0.8rem;
+  height: 50px;
+  outline: none;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  font-size: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+  background-color: var(--main-color);
+  transition: all 0.2s ease-in-out;
+}
+
+.createReportButton button:hover {
+  background-color: var(--main-color-hover);
+  transition: all 0.2s ease-in-out;
+}

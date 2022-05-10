@@ -1,8 +1,9 @@
 .mapBox {
+  flex-grow: 1;
   position: relative;
   float: right;
   width: 400px;
-  height: calc(100% - 20px);
+  height: 500px;
   background-color: white;
   margin-top: 20px;
   border-radius: 12px;

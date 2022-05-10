@@ -3,6 +3,7 @@ import Login from "./Pages/LoginContainer";
 import Register from "./Pages/Register";
 import RequireAuth from "./Components/RequireAuth";
 
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "mapbox-gl/dist/mapbox-gl.css";
 

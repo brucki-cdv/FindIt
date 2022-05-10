@@ -12,6 +12,8 @@ const InputField = (props) => {
         onChange={props.onChange}
         value={props.value}
         disabled={props.disabled}
+        min={props.min}
+        max={props.max}
       />
     </div>
   );

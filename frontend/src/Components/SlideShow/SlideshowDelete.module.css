@@ -1,0 +1,14 @@
+.slideshowDelete {
+    background-color: red;
+    color: white;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

@@ -18,12 +18,12 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true,
         validate: {
-         
           notEmpty: true,
         },
       },
     },
     {
+      timestamps: false,
       sequelize,
       modelName: "ReportImage",
     }

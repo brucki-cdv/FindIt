@@ -8,7 +8,7 @@ import ModalTitle from "../Modal/ModalTitle";
 import ModalBody from "../Modal/ModalBody";
 import InputField from "../InputField";
 import TextArea from "../TextArea";
-import GPSButtonContainer from "../GPSButton/GPSButtonContainer";
+import GPSButtonContainer from "../Buttons/GPSButton/GPSButtonContainer";
 
 import { IoClose } from "react-icons/io5";
 import { AiOutlineEdit } from "react-icons/ai";

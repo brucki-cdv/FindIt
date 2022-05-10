@@ -1,0 +1,14 @@
+.userCardImage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+}
+
+.userCardImage img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+}

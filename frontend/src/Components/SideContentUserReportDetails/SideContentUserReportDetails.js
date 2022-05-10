@@ -4,7 +4,10 @@ import DetailsControls from "../SideContentDetails/DetailsControls";
 import DetailsControl from "../SideContentDetails/DetailsControl";
 import DetailsInformations from "../SideContentDetails/DetailsInformations";
 import DetailsInformation from "../SideContentDetails/DetailsInformation";
+import UserReportCard from "../UserReportCard";
 import Separator from "../Separator";
+
+import image from "../../Images/person.jpg"
 
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
@@ -23,7 +26,7 @@ const SideContentUserReportDetails = ({ init }) => {
 
   return (
     <>
-      <DetailsImage>
+      <DetailsImage onClick={() => dispatch({type: "SLIDESHOW_OPEN"})}>
         {init.reportDetail.ReportImages ? (
           <img
             src={init.reportDetail.ReportImages.map((image) => {
@@ -71,6 +74,8 @@ const SideContentUserReportDetails = ({ init }) => {
         </DetailsInformation>
       </DetailsInformations>
       <Separator />
+      <UserReportCard image={image} title="test test test test" date="2020-01-20" description="Welcome dupa dupa"/>
+
     </>
   );
 };

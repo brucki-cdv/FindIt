@@ -1,0 +1,13 @@
+.slideshowClose {
+  background-color: gray;
+  color: white;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+}

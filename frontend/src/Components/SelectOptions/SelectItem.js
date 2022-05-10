@@ -12,19 +12,22 @@ import {useDispatch} from 'react-redux';
 
 const SelectItem = ({ options, defaultValue, label, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(defaultValue);
+  const [selectedOption, setSelectedOption] = useState({
+    value: defaultValue,
+    name: defaultValue,
+  });
   const toggling = () => setIsOpen(!isOpen);
  
-  const onOptionClicked = (value) => () => {
+  const onOptionClicked = (value, name) => () => {
     onChange(value)
-    setSelectedOption(value);
+    setSelectedOption({ value: value, name: name });
     setIsOpen(false);
   };
 
   return (
     <SelectContainer>
       <SelectLabel>{label}</SelectLabel>
-      <SelectHeader onClick={toggling}>{selectedOption}</SelectHeader>
+      <SelectHeader onClick={toggling}>{selectedOption.name}</SelectHeader>
       {isOpen && (
         <SelectListContainer>
           <SelectList>
@@ -34,7 +37,7 @@ const SelectItem = ({ options, defaultValue, label, onChange }) => {
               <>
                 {options.map((option) => {
                   return (
-                    <SelectListItem onClick={onOptionClicked(option.value)}>
+                    <SelectListItem onClick={onOptionClicked(option.value, option.name)}>
                       {option.name}
                     </SelectListItem>
                   );

@@ -15,12 +15,16 @@
   z-index: 100;
   animation: slideToLeft 0.5s;
   animation-fill-mode: forwards;
-  overflow: auto;
 }
 
 .sideContentReports.active {
   animation: slideToRight 0.5s;
   animation-fill-mode: forwards;
+}
+
+#scrollableDiv {
+  height: 600px;
+  overflow: auto
 }
 
 @keyframes slideToRight {

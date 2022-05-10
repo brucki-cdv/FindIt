@@ -35,7 +35,7 @@ const SideContentUserReportsContainer = (props) => {
 
   useEffect(() => {
     let isApiSubscribed = true;
-    dataService.getUserReports('anowak@gmail.com').then((val) => {
+    dataService.getUserReports(userId, 10, 0).then((val) => {
       if (isApiSubscribed) {
         setUserReports(val.data.userReport);
       }

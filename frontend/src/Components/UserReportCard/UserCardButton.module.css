@@ -1,0 +1,17 @@
+button.userCardButton {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  padding: 0.8rem;
+  outline: none;
+  border: 0;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: var(--main-color);
+  color: white;
+  transition: all 0.15s ease-in-out;
+}
+
+button.userCardButton:hover {
+  background-color: var(--main-color-hover);
+  transition: all 0.15s ease-in-out;
+}

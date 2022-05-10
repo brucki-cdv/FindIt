@@ -7,13 +7,17 @@ const {
 
 exports.getInformations = async (req, res, next) => {
   try {
+    console.log("PARAMS = ", req.params.id);
     const informations = await UserReportInformation.findAll({
+      where: { reportId: req.params.id },
       include: [
         {
           model: UserReportLocation,
           attributes: ["longitude", "latitude"],
         },
-        { model: User, where: { id: req.params.id }, attributes: ["email"] },
+        {
+          model: User,
+        },
       ],
     });
 
@@ -74,5 +78,3 @@ exports.createInformation = async (req, res, next) => {
     console.log(error);
   }
 };
-
-

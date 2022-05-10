@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 const SideContentReportsContainer = (props) => {
   const [reports, setReports] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const { isFilterExpanded } = useSelector((state) => state.filter);
 
@@ -34,10 +36,10 @@ const SideContentReportsContainer = (props) => {
 
   useEffect(() => {
     let isApiSubscribed = true;
-    dataService.getReports().then((val) => {
+    dataService.getReports(20, 0).then((val) => {
       console.log(val);
       if (isApiSubscribed) {
-        setReports(val.data.reports);
+        setReports(val.data.reports.rows);
       }
     });
 
@@ -52,6 +54,11 @@ const SideContentReportsContainer = (props) => {
     onChangeType,
     onChangeDistance,
     reports,
+    setReports,
+    hasMore,
+    setHasMore,
+    page,
+    setPage
   };
 
   return <SideContentReports onClickFilter={onClickFilterButton} init={init} />;

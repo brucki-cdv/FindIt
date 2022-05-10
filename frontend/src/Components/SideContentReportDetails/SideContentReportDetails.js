@@ -22,7 +22,7 @@ const SideContentReportDetails = ({ init }) => {
   const dispatch = useDispatch();
   console.log(init.reportDetail);
   return (
-    <>
+    <div style={{ overflowY: "auto" }}>
       <DetailsImage>
         {init.reportDetail.ReportImages ? (
           <img
@@ -72,7 +72,7 @@ const SideContentReportDetails = ({ init }) => {
         </DetailsInformation>
       </DetailsInformations>
       <Separator />
-    </>
+    </div>
   );
 };
 

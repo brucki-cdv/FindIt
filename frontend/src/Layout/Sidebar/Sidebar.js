@@ -1,5 +1,5 @@
 import style from "./Sidebar.module.css";
-import LogoButton from "../../Components/LogoButton";
+import LogoButton from "../../Components/Buttons/LogoButton";
 
 import {
   FaMap,

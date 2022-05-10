@@ -7,10 +7,13 @@ import { useState, useEffect } from "react";
 import { storage } from "../../Services/firebase.service";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import moment from "moment";
+import { v4 as uuidv4 } from "uuid";
 
 const EditInformationContainer = (props) => {
+  let imagesUrlArr = [];
   const dispatch = useDispatch();
   const { reportId } = useSelector((state) => state.sideContent);
+  const { userId } = useSelector((state) => state.auth);
   const [report, setReport] = useState({});
   const [title, setTitle] = useState("");
   const [date, setDate] = useState();
@@ -22,6 +25,13 @@ const EditInformationContainer = (props) => {
     longitude: null,
     latitude: null,
     isCreated: false,
+  });
+  const [viewPort, setViewPort] = useState({
+    latitude: null,
+    longitude: null,
+    width: "100%",
+    height: "100%",
+    zoom: 4,
   });
 
   const closeModal = () => {
@@ -46,13 +56,11 @@ const EditInformationContainer = (props) => {
   };
 
   const handleMapClick = (event) => {
-    setPoint((prevState) => {
-      return {
-        ...prevState,
-        isCreated: true,
-        longitude: event.lngLat.lng,
-        latitude: event.lngLat.lat,
-      };
+    console.log(event);
+    setPoint({
+      isCreated: true,
+      longitude: event.lngLat.lng,
+      latitude: event.lngLat.lat,
     });
   };
 
@@ -81,7 +89,15 @@ const EditInformationContainer = (props) => {
         setPoint({
           longitude: val.data.report.ReportLocation.longitude,
           latitude: val.data.report.ReportLocation.latitude,
-          isCreated: true
+          isCreated: true,
+        });
+
+        setViewPort((prevState) => {
+          return {
+            ...prevState,
+            latitude: val.data.report.ReportLocation.latitude,
+            longitude: val.data.report.ReportLocation.longitude,
+          };
         });
       }
     });
@@ -105,11 +121,13 @@ const EditInformationContainer = (props) => {
     }
   };
 
-  const handleUpload = () => {
-    images.map((image) => {
+  const handleUploadImage = async (image) => {
+    return new Promise((resolve, reject) => {
       //
+      const generatedName = "IMG_" + uuidv4();
+
       if (!image) return;
-      const sotrageRef = ref(storage, `files/${image.name}`);
+      const sotrageRef = ref(storage, `files/${generatedName}`);
       const uploadTask = uploadBytesResumable(sotrageRef, image);
 
       uploadTask.on(
@@ -117,30 +135,66 @@ const EditInformationContainer = (props) => {
         (snapshot) => {
           console.log(snapshot);
         },
-        (error) => console.log(error),
+        (error) => {
+          console.log(error);
+          reject(error);
+        },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log("File available at", downloadURL);
+            console.log("URL  = ", downloadURL);
+            imagesUrlArr.push(downloadURL);
+            resolve();
           });
         }
       );
     });
   };
 
+  const handleEditRecord = () => {
+    console.log("POINT = ", point.longitude);
+    return new Promise((resolve, reject) => {
+      dataService
+        .updateReport(reportId, {
+          title: "" + title,
+          description: "" + description,
+          longitude: point.longitude,
+          latitude: point.latitude,
+          images: imagesUrlArr
+        })
+        .then(resolve())
+        .catch((error) => reject(error));
+    });
+  };
+
+  const handleReportUpdate = async () => {
+    Promise.all(
+      images.map((image) => {
+        return handleUploadImage(image);
+      })
+    ).then(() => {
+      handleEditRecord();
+    });
+
+    dispatch({ type: "MODAL_CLOSE" });
+  };
+
   const init = {
-    validateForm,
     onDescriptionChange,
     onDateChange,
     onTitleChange,
-    convertedDate,
-    isValid,
     onFileChange,
-    handleUpload,
+    handleUploadImage,
     handleMapClick,
+    handleReportUpdate,
+    validateForm,
     title,
     description,
     date,
-    point
+    point,
+    convertedDate,
+    isValid,
+    setViewPort,
+    viewPort
   };
 
   return (

@@ -1,5 +1,6 @@
 import MainMap from "./MainMap";
 
+
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -28,6 +29,7 @@ const MainMapContainer = (props) => {
     axios
       .get("http://127.0.0.1:8000/api/v1/report/location")
       .then((value) => {
+        console.log(value);
         setLocations(value.data.reportsLocation);
       })
       .catch((err) => {

@@ -1,0 +1,11 @@
+li.userCardTitle {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: black;
+}
+
+li.userCardTitle span {
+    overflow: hidden !important;
+  text-overflow: ellipsis;
+  width: 50px;
+}
